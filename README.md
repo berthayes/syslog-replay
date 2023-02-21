@@ -3,7 +3,7 @@ This repository is a combination Dockerfile and example docker-compose.yml file 
 
 This allows for a "live" syslog datastream that plays out over time, and is primarily useful in building custom demos, workshops, proving concepts, etc.
 
-Why do this? When provisioning a demo environment with docker-compose, you won't know the IP address of any of the running containers ahead of time.
+Why do this? When provisioning a demo environment with docker-compose, you won't know the IP address of any of the running containers ahead of time, and it's nice to have a something *automatically* start sending data over the wire when it starts up.
 
 The `rewrite_pcap.sh` startup script does the heavy lifting:
 
