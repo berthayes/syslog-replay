@@ -10,7 +10,7 @@ services:
     ports:
       - "19000:9000"
     volumes:
-      - "~/cribl-config:/opt/cribl/config-volume"
+      - "./cribl-config:/opt/cribl/config-volume"
   workers:
     image: cribl/cribl:latest
     hostname: worker
