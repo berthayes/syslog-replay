@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  master:
+    image: cribl/cribl:latest
+    hostname: leader
+    environment:
+      - CRIBL_DIST_MODE=master
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@0.0.0.0:4200
+      - CRIBL_VOLUME_DIR=/opt/cribl/config-volume
+    ports:
+      - "19000:9000"
+    volumes:
+      - "~/cribl-config:/opt/cribl/config-volume"
+  workers:
+    image: cribl/cribl:latest
+    hostname: worker
+    depends_on: 
+      - master
+    environment:
+      - CRIBL_DIST_MODE=worker
+      - CRIBL_DIST_MASTER_URL=tcp://criblmaster@master:4200
+    ports:
+      - 9000
+  syslog-replay:
+    image: syslog-replay:latest
+    hostname: syslog-replay
+    depends_on:
+      - workers
+    entrypoint: /rewrite_pcap.sh
+    volumes:
+      - ./pcaps:/pcaps
+      
