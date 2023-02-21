@@ -25,3 +25,9 @@ The included `syslog.pcap` file originally used 192.168.1.107:5140 as the UDP sy
 ```docker-compose up -d```
 
 When using the included example pcap, configure your Cribl worker to listen on UDP 5140 for syslog.  Events will flow like tap water, not a firehose.
+
+## Using your own pcap file
+Ideally, capture packets on the listening interface of your syslog server.  
+* Note that the `rewrite_pcap.sh` script does NOT change the destination port of syslog packets in the saved pcap.
+
+```sudo tcpdump -s0 udp and port 5140 -w syslog.pcap```
