@@ -23,3 +23,5 @@ The included `syslog.pcap` file originally used 192.168.1.107:5140 as the UDP sy
 ```docker build -t syslog-replay .```
 
 ```docker-compose up -d```
+
+When using the included example pcap, configure your Cribl worker to listen on UDP 5140 for syslog.  Events will flow like tap water, not a firehose.
